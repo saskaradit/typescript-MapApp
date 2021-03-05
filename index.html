@@ -6,9 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Map App</title>
 </head>
+<script>function initMap() { console.log('lib loaded') }</script>
 <body>
-  <div id="map" style="height: 100%;"></div>
-  <script src="./src/index.ts"></script>
+  <div id="map" style="height: 100vh;"></div>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4tjyylh799IGI573hhKDjdLog8LCp1eQ"></script>
+  <script src="./src/index.ts"></script>
+  <!-- <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4tjyylh799IGI573hhKDjdLog8LCp1eQ&callback=initMap"></script> -->
 </body>
 </html>
+

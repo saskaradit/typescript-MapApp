@@ -1,5 +1,15 @@
-import { User } from "./User";
-import { Company } from "./Company";
+// import {} from "googlemaps";
+import {} from "google.maps";
+
+// Markable is an argument for addMarker
+export interface Markable {
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+  markerContent(): string;
+  color: string;
+}
 
 export class CustomMap {
   private googleMap: google.maps.Map;
@@ -14,15 +24,20 @@ export class CustomMap {
     });
   }
 
-  addMarker(mark: User | Company): void {
-    // mark.coordinates
-    new google.maps.Marker({
+  addMarker(mark: Markable): void {
+    const marker = new google.maps.Marker({
       map: this.googleMap,
       position: {
         lat: mark.coordinates.lat,
         lng: mark.coordinates.lng,
       },
     });
+
+    marker.addListener("click", () => {
+      const infoWindow = new google.maps.InfoWindow({
+        content: mark.markerContent(),
+      });
+      infoWindow.open(this.googleMap, marker);
+    });
   }
-  addCompanyMarker(company: Company): void {}
 }
